@@ -27,3 +27,21 @@ sum_up_numbers_general(L, N) :-
   add_back_to_list(Y, X, R2),
   sum_up_numbers_general(R2, R3);
   N is X + sum_list(Y).
+
+%Problem #3
+min_above_min(L1, L2, N) :-
+  length(L1, R1),
+  length(L2, R2),
+  write(L1 > R2).
+
+%Problem #4
+common_unique_elements(L1, L2, N) :-
+  Result1 is ((length(L1, R1)) =:= (length(L2, R2))),
+  Result1 =:= true,
+  check_for_match(L1, L2, R3);
+
+
+check_for_match(L1, L2, Result) :-
+  [X1|_] = L1,
+  [X2|_] = L2,
+  
