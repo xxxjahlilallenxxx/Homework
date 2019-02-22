@@ -32,16 +32,23 @@ sum_up_numbers_general(L, N) :-
 min_above_min(L1, L2, N) :-
   length(L1, R1),
   length(L2, R2),
-  write(L1 > R2).
+  write(R1 > R2),
+  R1 > R2;
+  R2 > R1,
+  write(R1 > R2),
 
 %Problem #4
 common_unique_elements(L1, L2, N) :-
   Result1 is ((length(L1, R1)) =:= (length(L2, R2))),
   Result1 =:= true,
-  check_for_match(L1, L2, R3);
+  check_for_match(L1, L2, []);
 
 
 check_for_match(L1, L2, Result) :-
-  [X1|_] = L1,
-  [X2|_] = L2,
-  
+  length(L1, R1) > 0,
+  length(L2, R2) > 0,
+  [X1|Y1] = L1,
+  [X2|Y2] = L2,
+  X1 =:= X2,
+  write([X1 | Result]),
+  check_for_match(Y1, Y2, Result).
