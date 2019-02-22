@@ -18,7 +18,12 @@ sum_up_numbers_general(L, N) :-
   [X|Y] = L,
   is_list(X),
   length(X, R1) =:= 0,
-  add_back_to_list(R1, Y, R2)
+  add_back_to_list(Y, R1, R2)
   sum_up_numbers_general(R2, R3);
   length(X, R1) > 0,
-  sum_up_numbers_general
+  append(Y, X, L1),
+  sum_up_numbers_general(L2, R3);
+  number(X),
+  add_back_to_list(Y, X, R2),
+  sum_up_numbers_general(R2, R3);
+  N is X + sum_list(Y).
