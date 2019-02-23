@@ -41,7 +41,7 @@ min_above_min(L1, L2, N) :-
 common_unique_elements(L1, L2, N) :-
   Result1 is ((length(L1, R1)) =:= (length(L2, R2))),
   Result1 =:= true,
-  check_for_match(L1, L2, []);
+  check_for_match(L1, L2, []).
 
 
 check_for_match(L1, L2, Result) :-
@@ -52,3 +52,17 @@ check_for_match(L1, L2, Result) :-
   X1 =:= X2,
   write([X1 | Result]),
   check_for_match(Y1, Y2, Result).
+
+check_list_for_lowest(L, R):-
+  [X1|Y1] = L,
+  [X2|Y2] = Y1,
+  number(X1),
+  number(X2),
+  X1 < X2;
+  number(X2),
+  check_list_for_lowest(write([Y2|X1], R), R1);
+  number(X1),
+  check_list_for_lowest(write([X1|Y1], R), R1);
+  is_list(X2),
+  length(X2) =:= 0,
+  length(X2).
